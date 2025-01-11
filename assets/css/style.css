@@ -1,0 +1,208 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+ul {
+	list-style: none;
+}
+img {
+	width: 100%;
+}
+a {
+	text-decoration: none;
+}
+
+.container {
+	max-width: 1300px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.logo {
+	width: 100px;
+}
+
+header {
+	padding: 20px 0;
+	background-color: darkcyan;
+}
+
+section {
+	padding: 20px 0;
+}
+
+.box {
+	background-color: darkcyan;
+	padding: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	width: 400px;
+	min-height: 400px;
+	margin: 5px;
+	position: relative;
+	background-image: url("../images/1.jpg");
+	background-position: top right;
+	background-size: cover;
+	background-blend-mode: color-burn;
+}
+
+.box p {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(100% - 40px);
+	background-color: rgba(255, 255, 255, 0.5);
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.bg-img {
+	width: 100%;
+	height: 700px;
+	background-image: url("../images/2.jpg");
+	background-position: center;
+	background-size: cover;
+	background-attachment: fixed;
+}
+.box:first-child {
+	background-image: url("../images/1.jpg");
+}
+.box:nth-child(2) {
+	background-image: url("../images/2.jpg");
+}
+.box:nth-child(3) {
+	background-image: url("../images/3.jpg");
+}
+.box:nth-child(4) {
+	background-image: url("../images/1.jpg");
+}
+.box:nth-child(even)::before {
+	content: "👍";
+	font-size: 30px;
+}
+
+section:has(.box) .container {
+	background-color: red;
+}
+
+section:has(.bg-img) {
+	background-color: yellow;
+	animation-name: bg-change;
+	/* animation-delay: 5s; */
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-fill-mode: backwards;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
+}
+
+section:has(.bg-img)::before {
+	content: "✍";
+	font-size: 30px;
+}
+section:has(.bg-img)::after {
+	content: "✍";
+}
+
+section:has(.box):before {
+	content: "";
+	width: 100%;
+	height: 20px;
+	display: block;
+	background-image: url("../images/3.jpg");
+	background-size: cover;
+	background-position: center;
+	background-color: darkblue;
+}
+
+.box:hover {
+	/* background-blend-mode: unset; */
+	background-image: url("../images/3.jpg");
+}
+
+.box:hover p {
+	background-color: rgba(255, 0, 0, 0.9);
+}
+
+.box:hover::before {
+	content: "👍";
+	font-size: 30px;
+}
+
+.box,
+.box p {
+	transition-property: all;
+	transition-duration: 3s;
+	/* transition-delay: 0.5s; */
+	transition-timing-function: linear;
+	/* cursor: pointer; */
+}
+
+.move {
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	border-radius: 50%;
+	position: absolute;
+	z-index: 10;
+	animation-name: move;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	/* animation-direction: alternate; */
+}
+
+/* @keyframes bg-change {
+	from {
+		background-color: yellow;
+	}
+	to {
+		background-color: red;
+	}
+} */
+
+@keyframes bg-change {
+	0% {
+		background-color: yellow;
+	}
+	20% {
+		background-color: red;
+	}
+	50% {
+		background-color: blue;
+	}
+	70% {
+		background-color: green;
+	}
+	100% {
+		background-color: darkorchid;
+	}
+}
+
+@keyframes move {
+	0% {
+		top: 0;
+		left: 0;
+	}
+	25% {
+		top: 0;
+		transform: scale(1.5);
+		left: calc(100% - 100px);
+		background-color: darkblue;
+	}
+	60% {
+		top: calc(100% - 100px);
+		left: calc(100% - 100px);
+	}
+	80% {
+		transform: scale(0.5);
+		top: calc(100% - 100px);
+		background-color: lightcoral;
+		left: 0;
+	}
+	100% {
+		top: 0;
+		left: 0;
+	}
+}
